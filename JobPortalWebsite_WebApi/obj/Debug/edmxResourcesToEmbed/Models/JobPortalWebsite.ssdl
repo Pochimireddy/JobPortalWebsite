@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JobPortalWebsite2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="admin_id" />
+    </Key>
+    <Property Name="admin_id" Type="int" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="full_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="phone_number" Type="varchar" MaxLength="20" />
+    <Property Name="address" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="application">
+    <Key>
+      <PropertyRef Name="application_id" />
+    </Key>
+    <Property Name="application_id" Type="int" Nullable="false" />
+    <Property Name="job_id" Type="int" Nullable="false" />
+    <Property Name="job_seeker_id" Type="int" Nullable="false" />
+    <Property Name="cover_letter" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="resume" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="applied_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="company_id" />
+    </Key>
+    <Property Name="company_id" Type="int" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="company_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="phone_number" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="industry" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="interview">
+    <Key>
+      <PropertyRef Name="interview_id" />
+    </Key>
+    <Property Name="interview_id" Type="int" Nullable="false" />
+    <Property Name="application_id" Type="int" Nullable="false" />
+    <Property Name="interviewer_id" Type="int" Nullable="false" />
+    <Property Name="interview_date" Type="date" Nullable="false" />
+    <Property Name="interview_time" Type="time" Precision="7" Nullable="false" />
+    <Property Name="interview_location" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="interview_notes" Type="text" />
+  </EntityType>
+  <EntityType Name="job">
+    <Key>
+      <PropertyRef Name="job_id" />
+    </Key>
+    <Property Name="job_id" Type="int" Nullable="false" />
+    <Property Name="company_id" Type="int" Nullable="false" />
+    <Property Name="job_title" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="job_description" Type="text" Nullable="false" />
+    <Property Name="job_requirements" Type="text" Nullable="false" />
+    <Property Name="job_location" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="salary_range" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="employment_type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="created_at" Type="datetime" Nullable="false" />
+    <Property Name="expiration_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="job_seeker">
+    <Key>
+      <PropertyRef Name="job_seeker_id" />
+    </Key>
+    <Property Name="job_seeker_id" Type="int" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="full_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="phone_number" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="education_level" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="experience" Type="int" Nullable="false" />
+    <Property Name="resume" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="message">
+    <Key>
+      <PropertyRef Name="message_id" />
+    </Key>
+    <Property Name="message_id" Type="int" Nullable="false" />
+    <Property Name="sender_id" Type="int" Nullable="false" />
+    <Property Name="receiver_id" Type="int" Nullable="false" />
+    <Property Name="message_body" Type="text" Nullable="false" />
+    <Property Name="sent_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="JobPortalWebsite2ModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="application" EntityType="Self.application" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="interview" EntityType="Self.interview" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="job" EntityType="Self.job" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="job_seeker" EntityType="Self.job_seeker" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="message" EntityType="Self.message" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

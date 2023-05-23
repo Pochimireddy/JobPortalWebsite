@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JobPortalWebsite2ModelStoreContainer" CdmEntityContainer="JobPortalWebsite2">
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="JobPortalWebsite2Model.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="applications">
+      <EntityTypeMapping TypeName="JobPortalWebsite2Model.application">
+        <MappingFragment StoreEntitySet="application">
+          <ScalarProperty Name="application_id" ColumnName="application_id" />
+          <ScalarProperty Name="job_id" ColumnName="job_id" />
+          <ScalarProperty Name="job_seeker_id" ColumnName="job_seeker_id" />
+          <ScalarProperty Name="cover_letter" ColumnName="cover_letter" />
+          <ScalarProperty Name="resume" ColumnName="resume" />
+          <ScalarProperty Name="applied_date" ColumnName="applied_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companies">
+      <EntityTypeMapping TypeName="JobPortalWebsite2Model.company">
+        <MappingFragment StoreEntitySet="company">
+          <ScalarProperty Name="company_id" ColumnName="company_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="industry" ColumnName="industry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="interviews">
+      <EntityTypeMapping TypeName="JobPortalWebsite2Model.interview">
+        <MappingFragment StoreEntitySet="interview">
+          <ScalarProperty Name="interview_id" ColumnName="interview_id" />
+          <ScalarProperty Name="application_id" ColumnName="application_id" />
+          <ScalarProperty Name="interviewer_id" ColumnName="interviewer_id" />
+          <ScalarProperty Name="interview_date" ColumnName="interview_date" />
+          <ScalarProperty Name="interview_time" ColumnName="interview_time" />
+          <ScalarProperty Name="interview_location" ColumnName="interview_location" />
+          <ScalarProperty Name="interview_notes" ColumnName="interview_notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobs">
+      <EntityTypeMapping TypeName="JobPortalWebsite2Model.job">
+        <MappingFragment StoreEntitySet="job">
+          <ScalarProperty Name="job_id" ColumnName="job_id" />
+          <ScalarProperty Name="company_id" ColumnName="company_id" />
+          <ScalarProperty Name="job_title" ColumnName="job_title" />
+          <ScalarProperty Name="job_description" ColumnName="job_description" />
+          <ScalarProperty Name="job_requirements" ColumnName="job_requirements" />
+          <ScalarProperty Name="job_location" ColumnName="job_location" />
+          <ScalarProperty Name="salary_range" ColumnName="salary_range" />
+          <ScalarProperty Name="employment_type" ColumnName="employment_type" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="expiration_date" ColumnName="expiration_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="job_seeker">
+      <EntityTypeMapping TypeName="JobPortalWebsite2Model.job_seeker">
+        <MappingFragment StoreEntitySet="job_seeker">
+          <ScalarProperty Name="job_seeker_id" ColumnName="job_seeker_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="education_level" ColumnName="education_level" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="resume" ColumnName="resume" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="messages">
+      <EntityTypeMapping TypeName="JobPortalWebsite2Model.message">
+        <MappingFragment StoreEntitySet="message">
+          <ScalarProperty Name="message_id" ColumnName="message_id" />
+          <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+          <ScalarProperty Name="receiver_id" ColumnName="receiver_id" />
+          <ScalarProperty Name="message_body" ColumnName="message_body" />
+          <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
