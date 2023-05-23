@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="JobPortalWebsiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminTable">
+          <Key>
+            <PropertyRef Name="Admin_id" />
+          </Key>
+          <Property Name="Admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppliedJobsTable">
+          <Key>
+            <PropertyRef Name="AppliedJobId" />
+          </Key>
+          <Property Name="AppliedJobId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Jobseeker_Id" Type="int" />
+          <Property Name="Jobseeker_jobId" Type="int" />
+          <Property Name="UploadResume" Type="varchar" MaxLength="5000" />
+          <Property Name="companyId" Type="int" />
+        </EntityType>
+        <EntityType Name="CompanyTable">
+          <Key>
+            <PropertyRef Name="companyId" />
+          </Key>
+          <Property Name="companyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyname" Type="varchar" MaxLength="100" />
+          <Property Name="companyemail" Type="varchar" MaxLength="100" />
+          <Property Name="companyphone" Type="varchar" MaxLength="100" />
+          <Property Name="companyaddress" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="JobPostTable">
+          <Key>
+            <PropertyRef Name="Jobseeker_jobId" />
+          </Key>
+          <Property Name="Jobseeker_jobId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Jobseeker_jobTitle" Type="varchar" MaxLength="100" />
+          <Property Name="Jobseeker_description" Type="varchar" MaxLength="1000" />
+          <Property Name="Jobseeker_experienceLevel" Type="varchar" MaxLength="100" />
+          <Property Name="Jobseeker_skillSet" Type="varchar" MaxLength="100" />
+          <Property Name="Jobseeker_payScale" Type="varchar" MaxLength="100" />
+          <Property Name="Jobseeker_location" Type="varchar" MaxLength="100" />
+          <Property Name="Jobseeker_jobType" Type="varchar" MaxLength="50" />
+          <Property Name="Jobseeker_jobStatus" Type="varchar" MaxLength="50" />
+          <Property Name="Jobseeker_startDate" Type="date" />
+          <Property Name="Jobseeker_lastDate" Type="date" />
+          <Property Name="companyId" Type="int" />
+        </EntityType>
+        <EntityType Name="JobSeekertable">
+          <Key>
+            <PropertyRef Name="Jobseeker_Id" />
+          </Key>
+          <Property Name="Jobseeker_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Jobseeker_FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Jobseeker_LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Jobseeker_Gender" Type="varchar" MaxLength="10" />
+          <Property Name="Jobseeker_DateofBirth" Type="date" />
+          <Property Name="Jobseeker_EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="Jobseeker_PhoneNum" Type="varchar" MaxLength="100" />
+          <Property Name="Jobseeker_Skills" Type="varchar" MaxLength="1000" />
+          <Property Name="Jobseeker_Password" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__AppliedJo__compa__534D60F1">
+          <End Role="CompanyTable" Type="Self.CompanyTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AppliedJobsTable" Type="Self.AppliedJobsTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyTable">
+              <PropertyRef Name="companyId" />
+            </Principal>
+            <Dependent Role="AppliedJobsTable">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppliedJo__Jobse__5165187F">
+          <End Role="JobSeekertable" Type="Self.JobSeekertable" Multiplicity="0..1" />
+          <End Role="AppliedJobsTable" Type="Self.AppliedJobsTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobSeekertable">
+              <PropertyRef Name="Jobseeker_Id" />
+            </Principal>
+            <Dependent Role="AppliedJobsTable">
+              <PropertyRef Name="Jobseeker_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppliedJo__Jobse__52593CB8">
+          <End Role="JobPostTable" Type="Self.JobPostTable" Multiplicity="0..1" />
+          <End Role="AppliedJobsTable" Type="Self.AppliedJobsTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPostTable">
+              <PropertyRef Name="Jobseeker_jobId" />
+            </Principal>
+            <Dependent Role="AppliedJobsTable">
+              <PropertyRef Name="Jobseeker_jobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobPostTa__compa__4E88ABD4">
+          <End Role="CompanyTable" Type="Self.CompanyTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="JobPostTable" Type="Self.JobPostTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyTable">
+              <PropertyRef Name="companyId" />
+            </Principal>
+            <Dependent Role="JobPostTable">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JobPortalWebsiteModelStoreContainer">
+          <EntitySet Name="AdminTable" EntityType="Self.AdminTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppliedJobsTable" EntityType="Self.AppliedJobsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyTable" EntityType="Self.CompanyTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobPostTable" EntityType="Self.JobPostTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobSeekertable" EntityType="Self.JobSeekertable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AppliedJo__compa__534D60F1" Association="Self.FK__AppliedJo__compa__534D60F1">
+            <End Role="CompanyTable" EntitySet="CompanyTable" />
+            <End Role="AppliedJobsTable" EntitySet="AppliedJobsTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppliedJo__Jobse__5165187F" Association="Self.FK__AppliedJo__Jobse__5165187F">
+            <End Role="JobSeekertable" EntitySet="JobSeekertable" />
+            <End Role="AppliedJobsTable" EntitySet="AppliedJobsTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppliedJo__Jobse__52593CB8" Association="Self.FK__AppliedJo__Jobse__52593CB8">
+            <End Role="JobPostTable" EntitySet="JobPostTable" />
+            <End Role="AppliedJobsTable" EntitySet="AppliedJobsTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobPostTa__compa__4E88ABD4" Association="Self.FK__JobPostTa__compa__4E88ABD4">
+            <End Role="CompanyTable" EntitySet="CompanyTable" />
+            <End Role="JobPostTable" EntitySet="JobPostTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JobPortalWebsiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminTable">
+          <Key>
+            <PropertyRef Name="Admin_id" />
+          </Key>
+          <Property Name="Admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppliedJobsTable">
+          <Key>
+            <PropertyRef Name="AppliedJobId" />
+          </Key>
+          <Property Name="AppliedJobId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Jobseeker_Id" Type="Int32" />
+          <Property Name="Jobseeker_jobId" Type="Int32" />
+          <Property Name="UploadResume" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="companyId" Type="Int32" />
+          <NavigationProperty Name="CompanyTable" Relationship="Self.FK__AppliedJo__compa__534D60F1" FromRole="AppliedJobsTable" ToRole="CompanyTable" />
+          <NavigationProperty Name="JobSeekertable" Relationship="Self.FK__AppliedJo__Jobse__5165187F" FromRole="AppliedJobsTable" ToRole="JobSeekertable" />
+          <NavigationProperty Name="JobPostTable" Relationship="Self.FK__AppliedJo__Jobse__52593CB8" FromRole="AppliedJobsTable" ToRole="JobPostTable" />
+        </EntityType>
+        <EntityType Name="CompanyTable">
+          <Key>
+            <PropertyRef Name="companyId" />
+          </Key>
+          <Property Name="companyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="companyemail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="companyphone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="companyaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AppliedJobsTables" Relationship="Self.FK__AppliedJo__compa__534D60F1" FromRole="CompanyTable" ToRole="AppliedJobsTable" />
+          <NavigationProperty Name="JobPostTables" Relationship="Self.FK__JobPostTa__compa__4E88ABD4" FromRole="CompanyTable" ToRole="JobPostTable" />
+        </EntityType>
+        <EntityType Name="JobPostTable">
+          <Key>
+            <PropertyRef Name="Jobseeker_jobId" />
+          </Key>
+          <Property Name="Jobseeker_jobId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Jobseeker_jobTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_experienceLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_skillSet" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_payScale" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_jobType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_jobStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_startDate" Type="DateTime" Precision="0" />
+          <Property Name="Jobseeker_lastDate" Type="DateTime" Precision="0" />
+          <Property Name="companyId" Type="Int32" />
+          <NavigationProperty Name="AppliedJobsTables" Relationship="Self.FK__AppliedJo__Jobse__52593CB8" FromRole="JobPostTable" ToRole="AppliedJobsTable" />
+          <NavigationProperty Name="CompanyTable" Relationship="Self.FK__JobPostTa__compa__4E88ABD4" FromRole="JobPostTable" ToRole="CompanyTable" />
+        </EntityType>
+        <EntityType Name="JobSeekertable">
+          <Key>
+            <PropertyRef Name="Jobseeker_Id" />
+          </Key>
+          <Property Name="Jobseeker_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Jobseeker_FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Jobseeker_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="Jobseeker_EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_PhoneNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_Skills" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Jobseeker_Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AppliedJobsTables" Relationship="Self.FK__AppliedJo__Jobse__5165187F" FromRole="JobSeekertable" ToRole="AppliedJobsTable" />
+        </EntityType>
+        <Association Name="FK__AppliedJo__compa__534D60F1">
+          <End Role="CompanyTable" Type="Self.CompanyTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AppliedJobsTable" Type="Self.AppliedJobsTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyTable">
+              <PropertyRef Name="companyId" />
+            </Principal>
+            <Dependent Role="AppliedJobsTable">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppliedJo__Jobse__5165187F">
+          <End Role="JobSeekertable" Type="Self.JobSeekertable" Multiplicity="0..1" />
+          <End Role="AppliedJobsTable" Type="Self.AppliedJobsTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobSeekertable">
+              <PropertyRef Name="Jobseeker_Id" />
+            </Principal>
+            <Dependent Role="AppliedJobsTable">
+              <PropertyRef Name="Jobseeker_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AppliedJo__Jobse__52593CB8">
+          <End Role="JobPostTable" Type="Self.JobPostTable" Multiplicity="0..1" />
+          <End Role="AppliedJobsTable" Type="Self.AppliedJobsTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPostTable">
+              <PropertyRef Name="Jobseeker_jobId" />
+            </Principal>
+            <Dependent Role="AppliedJobsTable">
+              <PropertyRef Name="Jobseeker_jobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobPostTa__compa__4E88ABD4">
+          <End Role="CompanyTable" Type="Self.CompanyTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="JobPostTable" Type="Self.JobPostTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyTable">
+              <PropertyRef Name="companyId" />
+            </Principal>
+            <Dependent Role="JobPostTable">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JobPortalWebsiteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminTables" EntityType="Self.AdminTable" />
+          <EntitySet Name="AppliedJobsTables" EntityType="Self.AppliedJobsTable" />
+          <EntitySet Name="CompanyTables" EntityType="Self.CompanyTable" />
+          <EntitySet Name="JobPostTables" EntityType="Self.JobPostTable" />
+          <EntitySet Name="JobSeekertables" EntityType="Self.JobSeekertable" />
+          <AssociationSet Name="FK__AppliedJo__compa__534D60F1" Association="Self.FK__AppliedJo__compa__534D60F1">
+            <End Role="CompanyTable" EntitySet="CompanyTables" />
+            <End Role="AppliedJobsTable" EntitySet="AppliedJobsTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppliedJo__Jobse__5165187F" Association="Self.FK__AppliedJo__Jobse__5165187F">
+            <End Role="JobSeekertable" EntitySet="JobSeekertables" />
+            <End Role="AppliedJobsTable" EntitySet="AppliedJobsTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AppliedJo__Jobse__52593CB8" Association="Self.FK__AppliedJo__Jobse__52593CB8">
+            <End Role="JobPostTable" EntitySet="JobPostTables" />
+            <End Role="AppliedJobsTable" EntitySet="AppliedJobsTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobPostTa__compa__4E88ABD4" Association="Self.FK__JobPostTa__compa__4E88ABD4">
+            <End Role="CompanyTable" EntitySet="CompanyTables" />
+            <End Role="JobPostTable" EntitySet="JobPostTables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JobPortalWebsiteModelStoreContainer" CdmEntityContainer="JobPortalWebsiteEntities">
+          <EntitySetMapping Name="AdminTables">
+            <EntityTypeMapping TypeName="JobPortalWebsiteModel.AdminTable">
+              <MappingFragment StoreEntitySet="AdminTable">
+                <ScalarProperty Name="Admin_id" ColumnName="Admin_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppliedJobsTables">
+            <EntityTypeMapping TypeName="JobPortalWebsiteModel.AppliedJobsTable">
+              <MappingFragment StoreEntitySet="AppliedJobsTable">
+                <ScalarProperty Name="AppliedJobId" ColumnName="AppliedJobId" />
+                <ScalarProperty Name="Jobseeker_Id" ColumnName="Jobseeker_Id" />
+                <ScalarProperty Name="Jobseeker_jobId" ColumnName="Jobseeker_jobId" />
+                <ScalarProperty Name="UploadResume" ColumnName="UploadResume" />
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyTables">
+            <EntityTypeMapping TypeName="JobPortalWebsiteModel.CompanyTable">
+              <MappingFragment StoreEntitySet="CompanyTable">
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="companyemail" ColumnName="companyemail" />
+                <ScalarProperty Name="companyphone" ColumnName="companyphone" />
+                <ScalarProperty Name="companyaddress" ColumnName="companyaddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobPostTables">
+            <EntityTypeMapping TypeName="JobPortalWebsiteModel.JobPostTable">
+              <MappingFragment StoreEntitySet="JobPostTable">
+                <ScalarProperty Name="Jobseeker_jobId" ColumnName="Jobseeker_jobId" />
+                <ScalarProperty Name="Jobseeker_jobTitle" ColumnName="Jobseeker_jobTitle" />
+                <ScalarProperty Name="Jobseeker_description" ColumnName="Jobseeker_description" />
+                <ScalarProperty Name="Jobseeker_experienceLevel" ColumnName="Jobseeker_experienceLevel" />
+                <ScalarProperty Name="Jobseeker_skillSet" ColumnName="Jobseeker_skillSet" />
+                <ScalarProperty Name="Jobseeker_payScale" ColumnName="Jobseeker_payScale" />
+                <ScalarProperty Name="Jobseeker_location" ColumnName="Jobseeker_location" />
+                <ScalarProperty Name="Jobseeker_jobType" ColumnName="Jobseeker_jobType" />
+                <ScalarProperty Name="Jobseeker_jobStatus" ColumnName="Jobseeker_jobStatus" />
+                <ScalarProperty Name="Jobseeker_startDate" ColumnName="Jobseeker_startDate" />
+                <ScalarProperty Name="Jobseeker_lastDate" ColumnName="Jobseeker_lastDate" />
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobSeekertables">
+            <EntityTypeMapping TypeName="JobPortalWebsiteModel.JobSeekertable">
+              <MappingFragment StoreEntitySet="JobSeekertable">
+                <ScalarProperty Name="Jobseeker_Id" ColumnName="Jobseeker_Id" />
+                <ScalarProperty Name="Jobseeker_FirstName" ColumnName="Jobseeker_FirstName" />
+                <ScalarProperty Name="Jobseeker_LastName" ColumnName="Jobseeker_LastName" />
+                <ScalarProperty Name="Jobseeker_Gender" ColumnName="Jobseeker_Gender" />
+                <ScalarProperty Name="Jobseeker_DateofBirth" ColumnName="Jobseeker_DateofBirth" />
+                <ScalarProperty Name="Jobseeker_EmailId" ColumnName="Jobseeker_EmailId" />
+                <ScalarProperty Name="Jobseeker_PhoneNum" ColumnName="Jobseeker_PhoneNum" />
+                <ScalarProperty Name="Jobseeker_Skills" ColumnName="Jobseeker_Skills" />
+                <ScalarProperty Name="Jobseeker_Password" ColumnName="Jobseeker_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JobPortalWebsiteModelStoreContainer" CdmEntityContainer="JobPortalWebsiteEntities">
+    <EntitySetMapping Name="AdminTables">
+      <EntityTypeMapping TypeName="JobPortalWebsiteModel.AdminTable">
+        <MappingFragment StoreEntitySet="AdminTable">
+          <ScalarProperty Name="Admin_id" ColumnName="Admin_id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppliedJobsTables">
+      <EntityTypeMapping TypeName="JobPortalWebsiteModel.AppliedJobsTable">
+        <MappingFragment StoreEntitySet="AppliedJobsTable">
+          <ScalarProperty Name="AppliedJobId" ColumnName="AppliedJobId" />
+          <ScalarProperty Name="Jobseeker_Id" ColumnName="Jobseeker_Id" />
+          <ScalarProperty Name="Jobseeker_jobId" ColumnName="Jobseeker_jobId" />
+          <ScalarProperty Name="UploadResume" ColumnName="UploadResume" />
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyTables">
+      <EntityTypeMapping TypeName="JobPortalWebsiteModel.CompanyTable">
+        <MappingFragment StoreEntitySet="CompanyTable">
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+          <ScalarProperty Name="companyname" ColumnName="companyname" />
+          <ScalarProperty Name="companyemail" ColumnName="companyemail" />
+          <ScalarProperty Name="companyphone" ColumnName="companyphone" />
+          <ScalarProperty Name="companyaddress" ColumnName="companyaddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobPostTables">
+      <EntityTypeMapping TypeName="JobPortalWebsiteModel.JobPostTable">
+        <MappingFragment StoreEntitySet="JobPostTable">
+          <ScalarProperty Name="Jobseeker_jobId" ColumnName="Jobseeker_jobId" />
+          <ScalarProperty Name="Jobseeker_jobTitle" ColumnName="Jobseeker_jobTitle" />
+          <ScalarProperty Name="Jobseeker_description" ColumnName="Jobseeker_description" />
+          <ScalarProperty Name="Jobseeker_experienceLevel" ColumnName="Jobseeker_experienceLevel" />
+          <ScalarProperty Name="Jobseeker_skillSet" ColumnName="Jobseeker_skillSet" />
+          <ScalarProperty Name="Jobseeker_payScale" ColumnName="Jobseeker_payScale" />
+          <ScalarProperty Name="Jobseeker_location" ColumnName="Jobseeker_location" />
+          <ScalarProperty Name="Jobseeker_jobType" ColumnName="Jobseeker_jobType" />
+          <ScalarProperty Name="Jobseeker_jobStatus" ColumnName="Jobseeker_jobStatus" />
+          <ScalarProperty Name="Jobseeker_startDate" ColumnName="Jobseeker_startDate" />
+          <ScalarProperty Name="Jobseeker_lastDate" ColumnName="Jobseeker_lastDate" />
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobSeekertables">
+      <EntityTypeMapping TypeName="JobPortalWebsiteModel.JobSeekertable">
+        <MappingFragment StoreEntitySet="JobSeekertable">
+          <ScalarProperty Name="Jobseeker_Id" ColumnName="Jobseeker_Id" />
+          <ScalarProperty Name="Jobseeker_FirstName" ColumnName="Jobseeker_FirstName" />
+          <ScalarProperty Name="Jobseeker_LastName" ColumnName="Jobseeker_LastName" />
+          <ScalarProperty Name="Jobseeker_Gender" ColumnName="Jobseeker_Gender" />
+          <ScalarProperty Name="Jobseeker_DateofBirth" ColumnName="Jobseeker_DateofBirth" />
+          <ScalarProperty Name="Jobseeker_EmailId" ColumnName="Jobseeker_EmailId" />
+          <ScalarProperty Name="Jobseeker_PhoneNum" ColumnName="Jobseeker_PhoneNum" />
+          <ScalarProperty Name="Jobseeker_Skills" ColumnName="Jobseeker_Skills" />
+          <ScalarProperty Name="Jobseeker_Password" ColumnName="Jobseeker_Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
